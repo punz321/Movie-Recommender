@@ -1,0 +1,18 @@
+#ready to use .gitignore content
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+venv/
+.env/
+.venv/
+
+.ipynb_checkpoints
+
+.vscode/
+tempCodeRunnerFile.py
+
+.DS_Store
+Thumbs.db
