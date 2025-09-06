@@ -45,7 +45,7 @@ ttls = movies[["item_id", "movie_title"]]
 #3. pick top N movies that the user wants
 
 #recommendation function
-def recommended(title, n=5):
+'''def recommended(title, n=5):
     norm_title = title.lower().strip()
     matches = ttls[ttls["movie_title"].str.lower().str.contains(norm_title, regex = False)]
     if matches.empty:
@@ -58,7 +58,7 @@ def recommended(title, n=5):
     top_n = sim_scores[:n] #takes the first n entries 
     movie_indices = [i[0] for i in top_n] #maps the indices in top_n back to movie titles
     return ttls.iloc[movie_indices] 
-
+'''
 title = "toy story"
 n = 5
 
