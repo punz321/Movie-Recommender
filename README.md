@@ -1,5 +1,5 @@
 # Movie-Recommender
-a model that suggests you movies based on your interests
+a model that suggests you movies based on your interests. This is a very old and small dataset, please don't expect a huge range of movies.
 
 # Day 1 
 Loaded dataset in colab and did some data preprocessing
