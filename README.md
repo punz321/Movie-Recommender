@@ -8,3 +8,8 @@ Loaded dataset in colab and did some data preprocessing
 - Created the similarity matrix and making the recommender function 
 - also trying to make a website for the same, trying streamlit for now
 - tested the recommender function in colab, switching to vsc and pushing to git (finally🙏)
+
+# Day 3
+- Created the frontend skeleton using Streamlit
+- Called the function in the app
+- Deployed the app
