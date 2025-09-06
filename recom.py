@@ -62,7 +62,7 @@ ttls = movies[["item_id", "movie_title"]]
 title = "toy story"
 n = 5
 
-recommended(title, n)
+#recommended(title, n)
 
 #Expanding the code a bit to make the result more user friendly
 def recommended(title, n=5):
@@ -81,5 +81,6 @@ def recommended(title, n=5):
     final = pd.DataFrame(res, columns = ["Movie Title", "Similarity Score"])
     final["Similarity Score"] = final["Similarity Score"].round(2)
     print(final)
+    return final
 
 recommended("toy story", 5)
