@@ -4,7 +4,6 @@ import pandas as pd
 from recom import recommended
 
 #streamlit UI
-
 st.title("(Alpha)Movie Recommender System🎬🍿")
 st.write("Type a movie name to get recommendations!!")
 
