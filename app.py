@@ -18,7 +18,6 @@ st.write("Type a movie name to get recommendations!!")
 user_input = st.text_input("Enter a movie title")
 
 #helper function for posters along w fetching the titles
-TMDB_API_KEY = "your_api_key_here"
 
 def get_poster(movie_title):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_title}"
