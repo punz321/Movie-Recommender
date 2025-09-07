@@ -2,12 +2,6 @@ import pandas as pd
 import numpy as np
 import sklearn.metrics.pairwise as sk
 
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-TMDB_API_KEY = os.getenv("TMDB_API_KEY")
-
 data_columns = ["user_id", "item_id", "rating", "timestamp"]
 user = pd.read_csv("ml-100k/u.data", sep = "\t", names = data_columns)
 #print(user.head())
