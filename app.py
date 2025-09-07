@@ -22,11 +22,14 @@ user_input = st.text_input("Enter a movie title")
 def get_poster(movie_title):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_title}"
     response = requests.get(url).json()
-    if response["results"]:
+
+    if "results" in response and response["results"]:
         poster_path = response["results"][0]["poster_path"]
-        full_path = f"https://image.tmdb.org/t/p/w500{poster_path}"
-        return full_path
-    return None
+        if poster_path:
+            return f"https://image.tmdb.org/t/p/w500{poster_path}"
+        
+    print("TMDB API response:", response)
+    return None 
 
 if st.button("Recommend"):
     if user_input:
@@ -34,7 +37,7 @@ if st.button("Recommend"):
         result = recommended(clean_input, 5)
         st.write("### Recommendations:")
 
-        for movie in result:
+        for movie in result["Movie Title"]:
             poster_url = get_poster(movie)
         if poster_url:
             st.image(poster_url, width=150, caption=movie)
