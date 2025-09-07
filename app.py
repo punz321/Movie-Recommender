@@ -4,6 +4,7 @@ import pandas as pd
 from recom import recommended
 
 #streamlit UI
+st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="wide")
 st.title("Movie Recommender System🎬🍿")
 st.write("Type a movie name to get recommendations!!")
 
