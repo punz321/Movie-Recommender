@@ -6,7 +6,7 @@ __pycache__/
 *.pyd
 
 venv/
-.env/
+.env
 .venv/
 
 .ipynb_checkpoints
