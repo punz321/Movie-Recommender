@@ -4,7 +4,7 @@ import pandas as pd
 from recom import recommended
 
 #streamlit UI
-st.title("(Alpha)Movie Recommender System🎬🍿")
+st.title("Movie Recommender System🎬🍿")
 st.write("Type a movie name to get recommendations!!")
 
 user_input = st.text_input("Enter a movie title")
