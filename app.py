@@ -37,12 +37,20 @@ if st.button("Recommend"):
         result = recommended(clean_input, 5)
         st.write("### Recommendations:")
 
-        for movie in result["Movie Title"]:
+        cols = st.columns(3)  # 3 posters per row
+
+        for idx, row in result.iterrows():
+            movie = row["Movie Title"]
+            score = row["Similarity Score"]
+
             poster_url = get_poster(movie)
-        if poster_url:
-            st.image(poster_url, width=150, caption=movie)
-        else:
-            st.write(movie)
+            col = cols[idx % 3]  # rotate between 3 columns
+
+            with col:
+                if poster_url:
+                    st.image(poster_url, width=150, caption=f"{movie}\n({score}%)")
+                else:
+                    st.write(f"{movie} ({score}%)")
     else:
         st.write("Please enter a movie title")
 
