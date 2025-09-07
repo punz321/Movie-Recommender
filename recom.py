@@ -3,7 +3,7 @@ import numpy as np
 import sklearn.metrics.pairwise as sk
 
 data_columns = ["user_id", "item_id", "rating", "timestamp"]
-user = pd.read_csv(r"ml-100k\u.data", sep = "\t", names = data_columns)
+user = pd.read_csv("ml-100k/u.data", sep = "\t", names = data_columns)
 #print(user.head())
 
 #Making this names column just in case my parents need a working proof of the project based 
@@ -14,7 +14,7 @@ names = ["item_id", "movie_title", "release_date", "video_release_date", "IMDb_U
          "Documentary", "Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery",
          "Romance", "Sci-Fi", "Thriller", "War", "Western"]
 
-movies = pd.read_csv(r"ml-100k\u.item",
+movies = pd.read_csv("ml-100k/u.item",
                    sep = "|",
                    encoding = "latin-1",
                    names = names
