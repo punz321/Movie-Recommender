@@ -3,6 +3,12 @@ import streamlit as st
 import requests
 import pandas as pd
 from recom import recommended
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+TMDB_API_KEY = os.getenv("TMDB_API_KEY") or st.secrets.get("TMDB_API_KEY")
 
 #streamlit UI
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬")
