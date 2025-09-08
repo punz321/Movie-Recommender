@@ -13,3 +13,11 @@ Loaded dataset in colab and did some data preprocessing
 - Created the frontend skeleton using Streamlit
 - Called the function in the app
 - Deployed the app
+
+# Day 4
+- Tried applying a new poster feature
+- This gives either wrong posters or no posters at all
+- Trying to fix this issue
+
+# Day 5
+- Still trying to fix the poster issue
