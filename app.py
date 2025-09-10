@@ -86,7 +86,7 @@ def get_poster(movie_title):
 if st.button("Recommend"):
     if user_input:
         clean_input = user_input.lower().strip()
-        result = recommended(clean_input, 5)
+        result = recommended(clean_input, 10)
         st.write("### Recommendations:")
 
         if isinstance(result, str):  # means "No Matches Found"

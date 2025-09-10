@@ -65,7 +65,7 @@ n = 5
 #recommended(title, n)
 
 #Expanding the code a bit to make the result more user friendly
-def recommended(title, n=5):
+def recommended(title, n):
     norm_title = title.lower().strip()
     matches = ttls[ttls["movie_title"].str.lower().str.contains(norm_title, regex = False)]
     if matches.empty:
@@ -83,4 +83,4 @@ def recommended(title, n=5):
     print(final)
     return final
 
-recommended("toy story", 5)
+recommended("toy story", 10)
