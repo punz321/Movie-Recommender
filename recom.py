@@ -58,10 +58,10 @@ ttls = movies[["item_id", "movie_title"]]
     top_n = sim_scores[:n] #takes the first n entries 
     movie_indices = [i[0] for i in top_n] #maps the indices in top_n back to movie titles
     return ttls.iloc[movie_indices] 
-'''
+
 title = "toy story"
 n = 5
-
+'''
 #recommended(title, n)
 
 #Expanding the code a bit to make the result more user friendly
