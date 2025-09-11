@@ -35,6 +35,7 @@ def extract_year(raw_title: str):
     # no year found: return original (stripped) and None for year
     return s, None
 
+fallback_poster = "assets/no_poster.jpg"
 def get_poster(movie_title):
     # movie_title may already contain the year in parentheses
     title, year = extract_year(movie_title)
@@ -51,42 +52,71 @@ def get_poster(movie_title):
         data = resp.json()
     except Exception as e:
         print("TMDB request failed:", e)
-        return None
+        return{
+            "poster_url": fallback_poster,
+            "rating": None,
+            "imdb_link": None,
+        }
 
     results = data.get("results", [])
     if not results:
         # no results at all
-        return None 
-    
-    # if we have a year, try to find a result whose release_date starts with that year
+        return{
+            "poster_url": fallback_poster,
+            "rating": None,
+            "imdb_link": None,
+        }    
+    # step 2: pick the best match for the poster
+    chosen = None
     if year:
         year_str = str(year)
         year_matches = [r for r in results if r.get("release_date", "").startswith(year_str)]
         if year_matches:
-            poster_path = year_matches[0].get("poster_path")
-            if poster_path:
-                return f"https://image.tmdb.org/t/p/w500{poster_path}"
-
+            chosen = year_matches[0]
+    if not chosen:
     # otherwise try exact title match (title or original_title)
-    for r in results:
-        r_title = (r.get("title") or "").lower()
-        r_original = (r.get("original_title") or "").lower()
-        if r_title == title.lower() or r_original == title.lower():
-            poster_path = r.get("poster_path")
-            if poster_path:
-                return f"https://image.tmdb.org/t/p/w500{poster_path}"
+        for r in results:
+            r_title = (r.get("title") or "").lower()
+            r_original = (r.get("original_title") or "").lower()
+            if r_title == title.lower() or r_original == title.lower():
+                chosen = r
+                break
 
     # fallback: use first result's poster if available
-    first_poster = results[0].get("poster_path")
-    if first_poster:
-        return f"https://image.tmdb.org/t/p/w500{first_poster}"
+    if not chosen:  
+        chosen = results[0]
+        
+    movie_id = chosen.get("id")
+    details_url = f"https://api.themoviedb.org/3/movie/{movie_id}"
+    deets_params = {"api_key" : TMDB_API_KEY}
+    try:
+        details_resp = requests.get(details_url, params = deets_params, timeout = 5)
+        details_resp.raise_for_status()
+        details = details_resp.json()
+    except Exception as e:
+        print("TMDB details fetch failed!", e)
+        return {
+            "poster_url": fallback_poster,
+            "rating": None,
+            "imdb_link": None,
+        }
+    
+    poster_path = chosen.get("poster_path")
+    poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}" if poster_path else fallback_poster
+    rating = details.get("vote_average")
+    imdb_id = details.get("imdb_id")
+    imdb_link = f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
 
-    return None
+    return {
+        "poster_url": poster_url,
+        "rating" : rating,
+        "imdb_link": imdb_link
+    }
 
 if st.button("Recommend"):
     if user_input:
         clean_input = user_input.lower().strip()
-        result = recommended(clean_input, 10)
+        result = recommended(clean_input, 5)
         st.write("### Recommendations:")
 
         if isinstance(result, str):  # means "No Matches Found"
@@ -98,15 +128,16 @@ if st.button("Recommend"):
                 movie = row["Movie Title"]
                 score = row["Similarity Score"]
 
-                poster_url = get_poster(movie)
+                info = get_poster(movie)
                 col = cols[idx % 3]  # rotate between 3 columns
 
                 with col:
-                    if poster_url:
-                        st.image(poster_url, width=150, caption=f"{movie}\n({score}%)")
+                    if info:
+                        st.image(info["poster_url"], width=150, caption=f"{movie}\n({score}%)")
+                        st.write(f"⭐ {info['rating']}/10" if info['rating'] else "⭐ N/A")
+                        if info["imdb_link"]:
+                            st.markdown(f"[View on IMDB]({info['imdb_link']})")
                     else:
                         st.write(f"{movie} ({score}%)")
     else:
         st.write("Please enter a movie title")
-
-
