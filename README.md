@@ -28,7 +28,11 @@ Loaded dataset in colab and did some data preprocessing
 - Added a custom fallback poster for every movie whose poster isn't available
 - Implemented the IMDb rating feature under each recommendation
 
+## Day 7
+- Added overview for every recommended movie 
+- Need to make it look better
+
 ### New Features List - (To be added)
-- Add movie overview/description from TMDB along with the poster
+- ✅Add movie overview/description from TMDB along with the poster
 - ✅Show IMDb rating under each recommendation
 - Nice hover effects for web users
