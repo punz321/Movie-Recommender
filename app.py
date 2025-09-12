@@ -56,6 +56,7 @@ def get_poster(movie_title):
             "poster_url": fallback_poster,
             "rating": None,
             "imdb_link": None,
+            "overview": None
         }
 
     results = data.get("results", [])
@@ -65,6 +66,7 @@ def get_poster(movie_title):
             "poster_url": fallback_poster,
             "rating": None,
             "imdb_link": None,
+            "overview": None
         }    
     # step 2: pick the best match for the poster
     chosen = None
@@ -99,6 +101,7 @@ def get_poster(movie_title):
             "poster_url": fallback_poster,
             "rating": None,
             "imdb_link": None,
+            "overview": None
         }
     
     poster_path = chosen.get("poster_path")
@@ -106,12 +109,19 @@ def get_poster(movie_title):
     rating = details.get("vote_average")
     imdb_id = details.get("imdb_id")
     imdb_link = f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
+    overview = details.get("overview")
 
     return {
         "poster_url": poster_url,
         "rating" : rating,
-        "imdb_link": imdb_link
+        "imdb_link": imdb_link,
+        "overview": overview
     }
+
+def shorten_text(text, max_chars=200):
+    if not text:
+        return "No description available"
+    return text if len(text) <= max_chars else text[:max_chars].rstrip() + "..."
 
 if st.button("Recommend"):
     if user_input:
@@ -137,6 +147,13 @@ if st.button("Recommend"):
                         st.write(f"⭐ {info['rating']}/10" if info['rating'] else "⭐ N/A")
                         if info["imdb_link"]:
                             st.markdown(f"[View on IMDB]({info['imdb_link']})")
+                        short_overview = shorten_text(info["overview"], max_chars=150)
+                        if info["overview"] and len(info["overview"]) > 150:
+                            st.caption(short_overview)
+                            with st.expander("Read More"):
+                                st.write(info["overview"])
+                        else:
+                            st.caption(short_overview)
                     else:
                         st.write(f"{movie} ({score}%)")
     else:
