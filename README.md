@@ -33,7 +33,7 @@ Loaded dataset in colab and did some data preprocessing
 - Need to make it look better
 
 ## Day 8
-- Trying to improvise the expander so it looks seamless
+- Trying to improvise the expander so the overview text looks seamless
 
 ### New Features List - (To be added)
 - ✅Add movie overview/description from TMDB along with the poster
