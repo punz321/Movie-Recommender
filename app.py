@@ -16,6 +16,25 @@ st.set_page_config(page_title="Movie Recommender", page_icon="🎬")
 st.title("Movie Recommender System🎬🍿")
 st.write("Type a movie name to get recommendations!")
 
+st.markdown(
+    """
+    <style>
+    summary {
+        color: #979d9f;
+        font-weight: 500;
+        cursor: pointer;
+        list-style: none;
+    }
+    details {
+        color: #979d9f;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 user_input = st.text_input("Enter a movie title")
 
 #helper function to extract title and year for the matches
@@ -151,10 +170,8 @@ if st.button("Recommend"):
                         if info["overview"]:
                             if len(info["overview"]) > 150:
                                 remaining_text = info["overview"][150:]
-                                st.markdown(
-                                    f"<details><summary>{short_overview}</summary>{remaining_text} </details>",
-                                    unsafe_allow_html = True
-                                )
+                                st.markdown(f"<details><summary>{short_overview}</summary>{remaining_text}</details>",
+                                unsafe_allow_html=True)
                             else:
                                 st.caption(info["overview"])
                         else:
