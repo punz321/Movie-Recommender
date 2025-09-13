@@ -121,7 +121,7 @@ def get_poster(movie_title):
 def shorten_text(text, max_chars=200):
     if not text:
         return "No description available"
-    return text if len(text) <= max_chars else text[:max_chars].rstrip() + "..."
+    return text if len(text) <= max_chars else text[:max_chars].rstrip()
 
 if st.button("Recommend"):
     if user_input:
@@ -148,12 +148,17 @@ if st.button("Recommend"):
                         if info["imdb_link"]:
                             st.markdown(f"[View on IMDB]({info['imdb_link']})")
                         short_overview = shorten_text(info["overview"], max_chars=150)
-                        if info["overview"] and len(info["overview"]) > 150:
-                            st.caption(short_overview)
-                            with st.expander("Read More"):
-                                st.write(info["overview"])
+                        if info["overview"]:
+                            if len(info["overview"]) > 150:
+                                remaining_text = info["overview"][150:]
+                                st.markdown(
+                                    f"<details><summary>{short_overview}</summary>{remaining_text} </details>",
+                                    unsafe_allow_html = True
+                                )
+                            else:
+                                st.caption(info["overview"])
                         else:
-                            st.caption(short_overview)
+                            st.caption("No description available")
                     else:
                         st.write(f"{movie} ({score}%)")
     else:
