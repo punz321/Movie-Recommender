@@ -32,6 +32,9 @@ Loaded dataset in colab and did some data preprocessing
 - Added overview for every recommended movie 
 - Need to make it look better
 
+## Day 8
+- Trying to improvise the expander so it looks seamless
+
 ### New Features List - (To be added)
 - ✅Add movie overview/description from TMDB along with the poster
 - ✅Show IMDb rating under each recommendation
