@@ -37,5 +37,5 @@ Loaded dataset in colab and did some data preprocessing
 
 ### New Features List - (To be added)
 - ✅Add movie overview/description from TMDB along with the poster
-- ✅Show IMDb rating under each recommendationkjkn
+- ✅Show IMDb rating under each recommendation
 - Nice hover effects for web users
