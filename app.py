@@ -33,14 +33,22 @@ st.markdown(
     .movie-poster {
         border-radius: 10px;
     }
-    .movie-card p,
-    .movie-card details, 
-    .movie-card summary {
+    summary {
         color: #979d9f;
         font-weight: 500;
         cursor: pointer;
         list-style: none;
-        text-align = left;
+    }
+    .movie-card p,
+    .movie-card details,
+    .movie-card summary {
+        color: #979d9f;
+        text_align: left;
+        line-height: 1.4;
+        font-size: 0.9rem
+    }
+    details[open] {
+        color: #979d9f;
     }
     </style>
     """,
@@ -149,7 +157,7 @@ def get_poster(movie_title):
         "overview": overview
     }
 
-def shorten_text(text, max_chars):
+def shorten_text(text, max_chars=200):
     if not text:
         return "No description available"
     return text if len(text) <= max_chars else text[:max_chars].rstrip()
@@ -174,35 +182,20 @@ if st.button("Recommend"):
 
                 with col:
                     if info:
-                        imdb_html = f'<a href="{info["imdb_link"]}" target="_blank">View on IMDB</a>' if info["imdb_link"] else ""
-                        overview_html = ""
-                        #'''st.image(info["poster_url"], width=150, caption=f"{movie}\n({score}%)")
-                        #st.write(f"⭐ {info['rating']}/10" if info['rating'] else "⭐ N/A")
-                        #if info["imdb_link"]:
-                        #    st.markdown(f"[View on IMDB]({info['imdb_link']})")
-                        #'''
+                        st.image(info["poster_url"], width=150, caption=f"{movie}\n({score}%)")
+                        st.write(f"⭐ {info['rating']}/10" if info['rating'] else "⭐ N/A")
+                        if info["imdb_link"]:
+                            st.markdown(f"[View on IMDB]({info['imdb_link']})")
                         if info["overview"]:
                             if len(info["overview"]) > 150:
                                 short_overview = shorten_text(info["overview"], max_chars=150)
                                 remaining_text = info["overview"][150:]
-                                overview_html = f"<details><summary>{short_overview}</summary>{remaining_text}</details>"
-                                #unsafe_allow_html=True)
+                                st.markdown(f"<details><summary>{short_overview}</summary>{remaining_text}</details>",
+                                unsafe_allow_html=True)
                             else:
-                                overview_html = f"<p>{info['overview']}</p>"
+                                st.caption(info["overview"])
                         else:
-                            overview_html = "<p>No description available</p>"
-                        st.markdown(
-                            f"""
-                            <div class = "movie-card">
-                                <img src = "{info['poster_url']}" class = "movie-poster" width = "150"/>
-                                <p><b>{movie}</b> ({score}%)</p>
-                                <p>⭐{info['rating']}/10</p>
-                                {imdb_html}
-                                {overview_html}
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
+                            st.caption("No description available")
                     else:
                         st.write(f"{movie} ({score}%)")
     else:
