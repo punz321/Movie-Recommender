@@ -1,7 +1,7 @@
 # Movie-Recommender
 a model that suggests you movies based on your interests. This is a very old and small dataset, please don't expect a huge range of movies.
 
-This project can be accessed [[here](https://punzeemovie.streamlit.app/)]
+This project can be accessed [[here](https://punzeemovie.streamlit.app/)].
 
 ### Dataset: 
 MovieLens 100k - https://grouplens.org/datasets/movielens/100k/
