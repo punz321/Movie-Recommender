@@ -1,5 +1,5 @@
 # Movie-Recommender
-a model that suggests you movies based on your chosen movie. This is a very old and small dataset as this project was just made for testing purposes. The dataset mostly includes 90's hollywood movies.
+A model that suggests you movies based on your chosen movie. This is a very old and small dataset as this project was just made for testing purposes. The dataset mostly includes 90's hollywood movies.
 
 This project can be accessed [here](https://punzeemovie.streamlit.app/).
 
