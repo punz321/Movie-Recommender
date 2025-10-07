@@ -3,6 +3,9 @@ A model that suggests you movies based on your chosen movie. This is a very old 
 
 This project can be accessed [here](https://punzeemovie.streamlit.app/).
 
+![GitHub last commit](https://img.shields.io/github/last-commit/punz321/Movie-Recommender?color=green)
+![WIP](https://img.shields.io/badge/status-WIP-orange)
+
 ### Dataset: 
 MovieLens 100k - https://grouplens.org/datasets/movielens/100k/
 
