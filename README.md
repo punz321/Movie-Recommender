@@ -44,3 +44,5 @@ Loaded dataset in colab and did some data preprocessing
 - ✅Add movie overview/description from TMDB along with the poster
 - ✅Show IMDb rating under each recommendation
 - Nice hover effects for web users (in progress)
+- Store user movies in a 'watchlist'
+- Export user recommendations in a `.csv` or `.pdf`
