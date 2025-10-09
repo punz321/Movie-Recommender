@@ -45,4 +45,4 @@ Loaded dataset in colab and did some data preprocessing
 - ✅Show IMDb rating under each recommendation
 - Nice hover effects for web users (in progress)
 - Store user movies in a 'watchlist'
-- Export user recommendations in a `.csv` or `.pdf`
+- Export user recommendations in a `.csv` or `.pdf` file
