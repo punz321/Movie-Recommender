@@ -7,7 +7,7 @@ This project can be accessed [here](https://punzeemovie.streamlit.app/).
 ![WIP](https://img.shields.io/badge/status-WIP-orange)
 
 ### Dataset: 
-MovieLens 100k - https://grouplens.org/datasets/movielens/100k/
+[MovieLens 100k](https://grouplens.org/datasets/movielens/100k/)
 
 ## Day 1 
 Loaded dataset in colab and did some data preprocessing
